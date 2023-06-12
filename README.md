@@ -31,7 +31,7 @@ const themeColorConfig = {
 // 调用derivativeThemeColor生成的颜色值
 const themeColor = derivativeThemeColor()
 
-// 生成如下颜色
+// 生成如下颜色， 具体：https://qingniaofly.github.io/theme/index.html
 // colorPrimary
 // colorSuccess
 // colorWarning
