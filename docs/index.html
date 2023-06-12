@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="description" content="light – weight css preprocessor" />
+        <title>@dever/theme</title>
+        <link rel="stylesheet" href="./assets/stylesheet.css" />
+    </head>
+    <body>
+        <div class="header">
+            <div class="wrap">
+                <div class="nav">
+                    <ul>
+                        <li><a href="https://github.com/qingniaofly/theme">Github</a></li>
+                        <li><a href="https://npmjs.com/package/@dever/theme">NPM</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="welcome">
+                <p>theme factory</p>
+                <div class="code">
+                    <div class="color-container">
+                        <div class="color" style="">
+                            <input id="color" type="color" value="#ee2233" />
+                        </div>
+                        <div id="color-list" class="color-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="module">
+            import { derivativeThemeColor, useStyleRegister } from 'https://unpkg.com/@dever/theme?module'
+            import * as deverTheme from 'https://unpkg.com/@dever/theme?module'
+
+            window.deverTheme = deverTheme
+
+            function updateThemeColor(color) {
+                const updColor = !color ? {} : { colorPrimary: color }
+                const themeColor = derivativeThemeColor(updColor)
+                const colorListDOM = document.getElementById('color-list')
+                colorListDOM.innerHTML = ''
+                const nodeList = Object.keys(themeColor)
+                    .filter((r) => typeof themeColor[r] === 'string')
+                    .map((k) => {
+                        const color = themeColor[k]
+                        const node = document.createElement('div')
+                        node.innerText = k + '--' + color
+                        node.classList.add('color-item')
+                        node.style.backgroundColor = color
+                        colorListDOM.appendChild(node)
+                        return node
+                    })
+            }
+            updateThemeColor()
+            document.getElementById('color').onchange = function (e) {
+                updateThemeColor(e.target.value)
+            }
+        </script>
+    </body>
+</html>
