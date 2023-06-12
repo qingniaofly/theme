@@ -103,7 +103,7 @@ const themeColor = derivativeThemeColor()
 ```
 
 
-2、自动生成style，支持动态切换主图色，支持scope
+2、自动生成style，支持动态切换主题色，支持scope
 
 ```js
 import { derivativeThemeColor, useStyleRegister } from '@dever/theme'
